@@ -12,6 +12,7 @@ type Context struct {
 	Method     string
 	Path       string
 	StatusCode int
+	Params     map[string]string
 }
 
 func NewContext(w http.ResponseWriter, req *http.Request) *Context {
@@ -64,4 +65,9 @@ func (c *Context) HTML(code int, html string) {
 	c.SetHead("Content-Type", "text/html")
 	c.Status(code)
 	c.Writer.Write([]byte(html))
+}
+
+func (c *Context) Param(key string) string {
+	value, _ := c.Params[key]
+	return value
 }
