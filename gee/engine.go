@@ -23,6 +23,7 @@ type Engine struct {
 func New() *Engine {
 	engine := &Engine{router: NewRouter()}
 	engine.RouterGroup = &RouterGroup{engine: engine}
+	engine.RouterGroup.middlewares = append(engine.RouterGroup.middlewares, Myrecover())
 	engine.groups = []*RouterGroup{engine.RouterGroup}
 	return engine
 }
