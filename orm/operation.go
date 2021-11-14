@@ -1,4 +1,4 @@
-package session
+package orm
 
 import (
 	"database/sql"
